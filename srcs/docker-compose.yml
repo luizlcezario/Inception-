@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    depends_on:
+      - wordpress
+    port:
+      - 443:443
+    networks:
+      - network
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - network
+    restart: always
+    env_file: .env
+    volumes:
+      - wordpress_data:/var/www/html
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    networks:
+      - network
+    restart: always
+    env_file: .env
+    volumes:
+      - mariadb:/var/lib/mysql
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/llima-ce/data/wordpress
+      o: bind
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/llima-ce/data/mariadb
+      o: bind
+
+networks:
+  network:
