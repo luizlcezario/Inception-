@@ -1,14 +1,15 @@
+# Use a Debian base image
 FROM debian:buster
 
+# Install MariaDB and other required packages
+RUN apt-get update && \
+    apt-get install -y mariadb-server &&  apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#install dependencies
+COPY conf /tmp/
 
-#set SSL
+RUN chmod 777 /tmp/setup.sh && /tmp/setup.sh
 
-#save conf file on container
+EXPOSE 3306
 
-#configure nginx
-
-#port to communicate
-
-#start nginx and nginx only
+# Start MariaDB server in the foreground
+CMD ["mysqld"]
