@@ -2,16 +2,20 @@ version: "3.9"
 services:
   nginx:
     container_name: nginx
-    build: ./requirements/nginx
+    build:
+      context: ./requirements/nginx
+      args: 
+        - DOMAIN_NAME
     depends_on:
       - wordpress
-    port:
-      - 443:443
+    ports:
+      - "443:443"
     networks:
       - network
     restart: always
     volumes:
       - wordpress_data:/var/www/html
+
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
