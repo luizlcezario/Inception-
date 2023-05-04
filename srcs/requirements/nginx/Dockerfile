@@ -11,8 +11,8 @@ RUN openssl req -x509 -nodes -days 365 -subj \
 	/etc/ssl/certs/nginx-selfsigned.crt
 
 #save conf file on container
-COPY ./conf/nginx.conf /etc/nginx/conf.d
-# RUN ln -s /etc/nginx/sites-available/llima-ce.42.fr /etc/nginx/sites-enabled/
+COPY conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/llima-ce.42.fr /etc/nginx/sites-enabled/
 RUN mkdir -p /run/nginx
 #port to communicate
 EXPOSE 443

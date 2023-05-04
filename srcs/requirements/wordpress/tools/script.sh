@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "env[MYSQL_HOST] = \$MYSQL_HOST" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[MYSQL_DATABASE] = \$MYSQL_DATABASE" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[MYSQL_USER] = \$MYSQL_USER" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[MYSQL_PASSWORD] = \$MYSQL_PASSWORD" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[REDIS_HOST] = \$REDIS_HOST" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[REDIS_PORT] = \$REDIS_PORT" >>/etc/php/7.3/fpm/pool.d/www.conf
-echo "env[DOMAIN_NAME] = \$DOMAIN_NAME" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[MYSQL_HOST] = $MYSQL_HOST" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[MYSQL_DATABASE] = $MYSQL_DATABASE" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[MYSQL_USER] = $MYSQL_USER" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[MYSQL_PASSWORD] = $MYSQL_PASSWORD" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[REDIS_HOST] = $REDIS_HOST" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[REDIS_PORT] = $REDIS_PORT" >>/etc/php/7.3/fpm/pool.d/www.conf
+echo "env[DOMAIN_NAME] = $DOMAIN_NAME" >>/etc/php/7.3/fpm/pool.d/www.conf
 
 # install Alterar a senha do usuário admin padrão
 if ! wp core is-installed --allow-root --path=/var/www/wordpress; then
