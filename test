@@ -1,9 +1,9 @@
 <?php
-define('WP_CACHE_KEY_SALT', getenv('DOMAIN_NAME'));
-define( 'DB_NAME', getenv('MYSQL_DATABASE'));
-define( 'DB_USER', getenv('MYSQL_USER'));
-define( 'DB_PASSWORD',getenv('MYSQL_HOST'));
-define( 'DB_HOST', getenv('MYSQL_HOST'));
+define('WP_CACHE_KEY_SALT', '' );
+define( 'DB_NAME', '' );
+define( 'DB_USER', '' );
+define( 'DB_PASSWORD','');
+define( 'DB_HOST', '' );
 define('DB_CHARSET', 'utf8');
 define( 'DB_COLLATE', '' );
 define('AUTH_KEY',         'coloque-aqui-uma-chave-aleatoria');

@@ -29,11 +29,17 @@ services:
       - wordpress_data:/var/www/html
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb
+    build:
+      context: ./requirements/mariadb
+      args:
+          - MYSQL_DATABASE
+          - MYSQL_ROOT
+          - MYSQL_ROOT_PASSWORD
+          - MYSQL_USER
+          - MYSQL_PASSWORD
     networks:
       - network
     restart: always
-    env_file: .env
     volumes:
       - mariadb:/var/lib/mysql
 
