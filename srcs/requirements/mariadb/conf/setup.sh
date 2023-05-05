@@ -1,22 +1,22 @@
 #!/bin/bash
-
-mysqld_safe &
 service mysql start
 
 # Kill the anonymous users
-mysql -e "DROP USER IF EXISTS ''@'localhost'"
 
-# Kill off the demo database
-mysql -e "DROP DATABASE IF EXISTS test"
+mysql -h localhost -e "DROP USER IF EXISTS ''@'localhost';" 
 
-# Create Wordpress database
-mysql -e "CREATE DATABASE $MYSQL_DATABASE"
+mysql -h localhost -e "DROP DATABASE IF EXISTS test;" 
 
-# Create Mariadb/Wordpress user
-mysql -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_USER_PASSWORD'"
+mysql -h localhost -e "CREATE DATABASE $MYSQL_DATABASE;" 
 
-# Grant privileges to user
-mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* to '$MYSQL_USER'@'%'"
+mysql -h localhost -e "CREATE USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_USER_PASSWORD';" 
 
-# Make sure that NOBODY can access the server without a password
-mysql -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';FLUSH PRIVILEGES"
+mysql -h localhost -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* to '$MYSQL_USER'@'localhost';" 
+
+mysql -h localhost -e "ALTER USER '$MYSQL_ROOT'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';FLUSH PRIVILEGES;"
+
+#  export MYSQL_DATABASE=wordpress
+#  export MYSQL_USER=llima-ce     
+#  export MYSQL_USER_PASSWORD=test
+#  export MYSQL_ROOT=root    
+#  export MYSQL_ROOT_PASSWORD=root123

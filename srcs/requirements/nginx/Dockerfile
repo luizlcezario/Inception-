@@ -12,6 +12,8 @@ RUN openssl req -x509 -nodes -days 365 -subj \
 
 #save conf file on container
 COPY conf /etc/nginx/sites-available/
+COPY conf/llima-ce.42.fr /etc/nginx/nginx.conf
+
 RUN ln -s /etc/nginx/sites-available/llima-ce.42.fr /etc/nginx/sites-enabled/
 RUN mkdir -p /run/nginx
 #port to communicate
