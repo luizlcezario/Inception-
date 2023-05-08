@@ -11,6 +11,7 @@ RUN openssl req -x509 -nodes -days 365 -subj \
 	/etc/ssl/certs/nginx-selfsigned.crt
 
 #save conf file on container
+RUN rm -rf /etc/nginx/sites-enabled/default
 COPY conf /etc/nginx/sites-available/
 
 RUN ln -s /etc/nginx/sites-available/llima-ce.42.fr /etc/nginx/sites-enabled/

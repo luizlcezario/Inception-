@@ -1,6 +1,24 @@
 version: "3.9"
 name: inception
 services:
+  site:
+    container_name: site
+    build: ./bonus/site
+    networks:
+      - mynetwork
+    restart: always
+    volumes:
+      - wordpress:/var/www/wordpress
+
+  redis:
+    container_name: redis
+    build: ./bonus/redis
+    networks:
+      - mynetwork
+    restart: always
+    depends_on:
+      - wordpress
+
   nginx:
     container_name: nginx
     build:
@@ -16,7 +34,6 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/wordpress
-
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress

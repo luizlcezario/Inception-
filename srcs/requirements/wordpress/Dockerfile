@@ -30,7 +30,8 @@ RUN echo "env[MYSQL_DATABASE] = \$MYSQL_DATABASE" >>/etc/php/7.3/fpm/pool.d/www.
 RUN echo "env[MYSQL_USER] = \$MYSQL_USER" >>/etc/php/7.3/fpm/pool.d/www.conf
 RUN echo "env[MYSQL_USER_PASSWORD] = \$MYSQL_USER_PASSWORD" >>/etc/php/7.3/fpm/pool.d/www.conf
 RUN echo "env[DOMAIN_NAME] = \$DOMAIN_NAME" >>/etc/php/7.3/fpm/pool.d/www.conf
-
+RUN echo "env[REDIS_HOST] = \$REDIS_HOST" >>/etc/php/7.3/fpm/pool.d/www.conf
+RUN echo "env[REDIS_PORT] = \$REDIS_PORT" >>/etc/php/7.3/fpm/pool.d/www.conf
 COPY tools /usr/local/bin
 
 RUN chmod a+x /usr/local/bin/script.sh

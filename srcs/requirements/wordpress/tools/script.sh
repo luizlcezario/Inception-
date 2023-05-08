@@ -7,11 +7,13 @@ if ! wp core is-installed --allow-root --path=/var/www/wordpress; then
 
 	wp plugin uninstall --allow-root --path=/var/www/wordpress akismet hello
 
+	wp plugin install --allow-root --path=/var/www/wordpress redis-cache --activate
+	
 	wp option update --allow-root --path=/var/www/wordpress blogdescription "$PHP_SUB_TITLE"
 
 	wp plugin update --all --allow-root --path=/var/www/wordpress
 
-	# wp redis enable --all --allow-root --path=/var/www/wordpress
+	wp redis enable --all --allow-root --path=/var/www/wordpress
 
 	chown -R www-data:www-data /var/www/wordpress
 
