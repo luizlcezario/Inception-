@@ -1,6 +1,25 @@
 version: "3.9"
 name: inception
 services:
+  ftp:
+    container_name: ftp
+    build:
+      context: ./bonus/ftp
+      args:
+        - FTP_USER
+        - FTP_PASS
+        - FTP_DOMAIN
+    networks:
+      - mynetwork
+    restart: always
+    ports:
+      - "21:21"
+      - "10090-10100:10090-10100"
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/wordpress
+    depends_on:
+      - wordpress
   site:
     container_name: site
     build: ./bonus/site
@@ -9,6 +28,8 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/wordpress
+    depends_on:
+      - nginx
 
   redis:
     container_name: redis

@@ -1,4 +1,6 @@
 all:
+	sudo chmod a+w /etc/hosts && sudo cat /etc/hosts | grep wleite.42.fr || \
+	sudo echo "127.0.0.1 llima-ce.42.fr" >> /etc/hosts
 	sudo mkdir -p /home/llima-ce/data/wordpress && sudo chmod 777 /home/llima-ce/data/wordpress
 	sudo mkdir -p /home/llima-ce/data/mariadb && sudo chmod 777 /home/llima-ce/data/mariadb
 	make up
