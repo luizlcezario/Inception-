@@ -2,12 +2,7 @@ server {
 	listen 7000;
 
 	root /var/www/site;
-	index index.html ;
-
-	types {
-		application/wasm wasm;
-		application/javascript js;
-	}
+	index index.html index.htm ;
 	location / {
 		try_files $uri $uri/ /index.html =404;
 	}
