@@ -1,9 +1,8 @@
 <?php
-define('WP_CACHE_KEY_SALT', '');
 define( 'WP_REDIS_HOST', getenv('REDIS_HOST') );
 define( 'WP_REDIS_PORT', getenv('REDIS_PORT') );
 define( 'WP_CACHE', true );
-define('WP_CACHE_KEY_SALT', getenv('DOMAIN_NAME'));
+define( 'WP_CACHE_KEY_SALT' , getenv('DOMAIN_NAME') );
 define( 'DB_NAME', getenv('MYSQL_DATABASE'));
 define( 'DB_USER', getenv('MYSQL_USER'));
 define( 'DB_PASSWORD',getenv('MYSQL_USER_PASSWORD'));

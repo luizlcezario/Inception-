@@ -9,7 +9,7 @@ ARG MYSQL_USER_PASSWORD
 
 # Install MariaDB and other required packages
 RUN apt-get update && \
-    apt-get install -y mariadb-server mariadb-client procps 
+	apt-get install -y mariadb-server mariadb-client procps 
 
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld && \

@@ -20,6 +20,7 @@ services:
       - wordpress:/var/www/wordpress
     depends_on:
       - wordpress
+
   site:
     container_name: site
     build: ./bonus/site
