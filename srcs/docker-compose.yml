@@ -24,6 +24,8 @@ services:
   site:
     container_name: site
     build: ./bonus/site
+    volumes:
+      - wordpress:/var/www/wordpress
     networks:
       - mynetwork
     restart: always

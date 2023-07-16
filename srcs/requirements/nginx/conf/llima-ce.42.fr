@@ -7,25 +7,26 @@ server	{
 	ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
 	ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-	location /site {
-		proxy_pass http://site:7000;
-	}
-
 	ssl_protocols TLSv1.2 TLSv1.3;
 
-    root    /var/www/wordpress;
-    index   index.php;
+    root    /var/www;
+    index   index.php  index.html;
+
+
+	location /site/ {
+		proxy_pass http://site:7000/;
+	}
 
 	location / {
-	root /var/www/wordpress;
-    try_files   $uri $uri/ /index.php?$args;
-	location ~ \.php$ {
-		include fastcgi_params;
-		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		fastcgi_pass wordpress:9000;
-		fastcgi_index index.php;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		root /var/www/wordpress;
+		try_files $uri $uri/ =404;
+		location ~ \.php$ {
+			include fastcgi_params;
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
+			fastcgi_pass wordpress:9000;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param SCRIPT_NAME $fastcgi_script_name;
 		}
 	}
 }

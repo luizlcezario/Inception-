@@ -15,6 +15,8 @@ RUN chown -R root:www-data /var/www/site &&  chmod -R 750 /var/www/site
 
 COPY docs /var/www/site
 
+RUN  chmod -R 777 /var/www/site/**/*
+
 RUN nginx -t
 
 #port to communicate
