@@ -12,8 +12,13 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 clean:
-	docker stop $$(docker ps -qa) || docker rm $$(docker ps -qa) || docker image rm $$(docker images -qa) || docker volume rm $$(docker volume ls -q) || docker network rm $$(docker network ls -q | tail -1) || sudo rm -rf /home/llima-ce/data/wordpress || sudo rm -rf /home/llima-ce/data/mysql 
+	sudo docker-compose -f srcs/docker-compose.yml down -v --rmi all --remove-orphans
+	sudo -n sed '/127.0.0.1 llima-ce/d' /etc/hosts -n
+	sudo rm -rf /home/llima-ce
 
-re: clean all
+fclean: clean
+	sudo docker system prune --volumes --all --force
 
-.PHONY: all up down clean re
+re: fclean all
+
+.PHONY: all up down clean re fclean

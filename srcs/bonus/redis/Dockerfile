@@ -2,6 +2,11 @@ FROM debian:buster
 
 RUN apt-get update && apt-get install -y lsb-release redis-server 
 
+
+RUN echo "\nbind 0.0.0.0\nport 6379\nprotected-mode no\n" > /etc/redis/redis.conf
+
+RUN mkdir /data && chown redis:redis /data
+
 EXPOSE 6379
 
-CMD ["redis-server"]
+CMD ["redis-server", "/etc/redis/redis.conf"]
