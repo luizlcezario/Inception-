@@ -23,8 +23,8 @@ services:
   site:
     container_name: site
     build: ./bonus/site
-    volumes:
-      - wordpress:/var/www/wordpress
+    depends_on:
+      - nginx
     networks:
       - mynetwork
     restart: always
